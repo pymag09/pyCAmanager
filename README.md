@@ -11,19 +11,19 @@ Try it without installation with VirtualBox instance!!!
 https://www.dropbox.com/s/i7bih3clyl48cp6/pyCAmanager.tar.bz2?dl=0  
 
 DEPENDENCIES:  
-1) openssl  
-2) python3  
+    1) openssl  
+    2) python3  
 
 INSTALATION:  
-apt-get install openssl  
-caman.py create
-caman.py init
-edit openssl.cnf.  
-    [ CA_default ]  
-    dir=/path/where_certs_will_be_stored  
-    new_certs_dir= $dir/signed_certs  
-edit subj.info
-run caman.py
+    apt-get install openssl  
+    caman.py create
+    caman.py init
+    edit openssl.cnf.  
+        [ CA_default ]  
+        dir=/path/where_certs_will_be_stored  
+        new_certs_dir= $dir/signed_certs  
+    edit subj.info
+    run caman.py
   
 ABOUT  
   
