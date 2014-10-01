@@ -75,8 +75,8 @@ new_certs_dir= $dir/signed_certs
 </ul><h2>
 <a name="about" class="anchor" href="#about"><span class="octicon octicon-link"></span></a>ABOUT</h2>
 
-<p>I use "caman.py" for radius and EAP. "caman.py" perform only manager actions but there is hook functionality. Here are three of them:
-1) "new.hook" is called after cert singing. It accepts three arguments CN(commcon name), email and days
+<p>I use "caman.py" for radius and EAP. "caman.py" perform only manager actions but has hook functionality. Here are three of them:
+1) "new.hook" is called after cert signing. It accepts three arguments CN(commcon name), email and days
 2) "revoke.hook" is called after cert revoking. It accepts three arguments cert file name, CN and email
 3) "crl.hook" is called after generating CRL. No arguments are avaliable for this hook
 You can use "crl.hook", for example, to transfer CRL to radius server.</p>
@@ -91,7 +91,7 @@ if [[ -e $PKI_ROOT/cacrlcert.pem ]]; then
 fi
 </code></pre>
 
-<p>Pay attention to $PKI_ROOT environment variable. It must be set to folder where CA files is located, where you are going to store
+<p>Pay attention to $PKI_ROOT environment variable. It must be set to the folder where CA files are located, where you are going to store
 all neccessary files in particular self-signed cert, index.txt etc.</p>
 
 <p>"subj.info" file.</p>
