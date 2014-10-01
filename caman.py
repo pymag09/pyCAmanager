@@ -3,7 +3,7 @@
 __author__ = 'Bieliaievskyi Sergey'
 __credits__ = ["Bieliaievskyi Sergey"]
 __license__ = "Apache License"
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 __maintainer__ = "Bieliaievskyi Sergey"
 __email__ = "magelan09@gmail.com"
 __status__ = "Release"
@@ -99,12 +99,15 @@ def show_lines(left_panel, right_panel, page=0, max_lines=0, findit=None):
                                                third_colom_width,
                                                line.get('emailAddress', ''),
                                                line.get('expire', ''))
-            panel.addstr(1 + y, 2, ready_line, curses.color_pair(3))
-            if findit:
-                panel.addstr(1 + y, 2 + ready_line.find(findit[1]), findit[1], curses.color_pair(4) | curses.A_BOLD)
-                line['findit_position'] = 2 + ready_line.find(findit[1])
-            line['screen'] = panel
-            line['y'] = 1 + y
+            try:
+                panel.addstr(1 + y, 2, ready_line, curses.color_pair(3))
+                if findit:
+                    panel.addstr(1 + y, 2 + ready_line.find(findit[1]), findit[1], curses.color_pair(4) | curses.A_BOLD)
+                    line['findit_position'] = 2 + ready_line.find(findit[1])
+                line['screen'] = panel
+                line['y'] = 1 + y
+            except:
+                pass
         panel.refresh()
 
     curses.curs_set(0)
@@ -172,7 +175,6 @@ def keyborad_processor(main_screen):
     def call_search_dialog():
         nonlocal search_string
         sid = edit_box(70, 5, 5, ' Searching for... ')
-        # key = 0
         while True:
             key = sid.getch()
             if key == 10:
@@ -218,8 +220,11 @@ def keyborad_processor(main_screen):
                      'P: p12 gen ',
                      'R: Revoke ']:
             menu_item = item.split(':')
-            main_screen.addstr(height - 1, offset, menu_item[0], curses.color_pair(2) | curses.A_BOLD)
-            main_screen.addstr(height - 1, offset + len(menu_item[0]) + 1, '%s' % menu_item[1], curses.color_pair(1))
+            try:
+                main_screen.addstr(height - 1, offset, menu_item[0], curses.color_pair(2) | curses.A_BOLD)
+                main_screen.addstr(height - 1, offset + len(menu_item[0]) + 1, '%s' % menu_item[1], curses.color_pair(1))
+            except:
+                pass
             offset = offset + len(item) + 2
 
     def show_me_screen():
@@ -242,7 +247,10 @@ def keyborad_processor(main_screen):
     show_me_screen()
     while True:
         pressed_key = main_screen.getch()
-        main_screen.move(height - 3, 1)
+        try:
+            main_screen.move(height - 3, 1)
+        except:
+            pass
         main_screen.clrtoeol()
         if pressed_key == curses.KEY_RESIZE:
             if curses.is_term_resized(height, width):
